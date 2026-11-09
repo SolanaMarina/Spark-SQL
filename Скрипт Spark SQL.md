@@ -14,8 +14,8 @@
 
 *1. Импортируем необходимые функции из модуля pyspark.sql библиотеки Apache Spark для решения задач
 
-`from pyspark.sql.functions import col, round, desc, sum, row_number, lag, dayofmonth, asc
-from pyspark.sql.window import Window`
+`from pyspark.sql.functions import col, round, desc, sum, row_number, lag, dayofmonth, asc`
+`from pyspark.sql.window import Window`
 
 *2. Для чтения датасета создаем переменную covid_df,где указываем путь к файлу covid-data.csv, наличие заголовка (для пропуска первой строки при анализе данных) и автоматическое определение типов данных
 
