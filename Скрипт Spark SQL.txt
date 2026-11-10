@@ -5,10 +5,10 @@ from pyspark.sql.window import Window
 covid_df = spark.read.csv(r"C:\Users\user\Desktop\4.2\covid-data.csv", header=True, inferSchema=True)
 
 
-covid_df.select("iso_code", "location", "date", "total_cases", "population").where("date = '2020-03-31'").where("iso_code NOT LIKE 'OWID_%'").withColumn("percent_infected", round(col("total_cases") / col("population") * 100, 3)).select("iso_code", "location", "percent_infected").orderBy(desc("percent_infected")).show(15)
+covid_df.select("iso_code", "location", "date", "total_cases", "population").where("date = '2021-03-31'").where("iso_code NOT LIKE 'OWID_%'").withColumn("percent_infected", round(col("total_cases") / col("population") * 100, 3)).select("iso_code", "location", "percent_infected").orderBy(desc("percent_infected")).show(15)
 
 
- covid_df.where("date BETWEEN '2021-03-25' AND '2021-03-31'").where("iso_code NOT LIKE 'OWID_%'").groupBy("iso_code", "location").agg(sum("new_cases").alias("week_cases")).withColumn("num",row_number().over(Window.orderBy(desc("week_cases")))).where("num <= 10").select("num", "location", "week_cases").orderBy("num").show(10)
+covid_df.where("date BETWEEN '2021-03-25' AND '2021-03-31'").where("iso_code NOT LIKE 'OWID_%'").groupBy("iso_code", "location").agg(sum("new_cases").alias("week_cases")).withColumn("num",row_number().over(Window.orderBy(desc("week_cases")))).where("num <= 10").select("num", "location", "week_cases").orderBy("num").show(10)
 
 
 
