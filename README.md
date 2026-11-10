@@ -26,7 +26,7 @@
 
 `covid_df.select("iso_code", "location", "date", "total_cases", "population").where("date = '2021-03-31'").where("iso_code NOT LIKE 'OWID_%'").withColumn("percent_infected", round(col("total_cases") / col("population") * 100, 3)).select("iso_code", "location", "percent_infected").orderBy(desc("percent_infected")).show(15)`
 
-![Скриншот](1.png)
+![Скриншот](01.png)
 
 * Top 10 стран с максимальным зафиксированным кол-вом новых случаев за последнюю неделю марта 2021 в отсортированном порядке по убыванию
 
