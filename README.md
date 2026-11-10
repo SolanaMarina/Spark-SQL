@@ -3,7 +3,7 @@
 **Цель:** изучить датасет по заболеваемости ковид-19 и получить навык работы с DataFrame API
 
 ### Задание:
-* 1.Выберите 15 стран с наибольшим процентом переболевших на 31 марта (в выходящем датасете необходимы колонки: iso_code, страна, процент переболевших)
+* 1.Выберите 15 стран с наибольшим процентом переболевших на 31 марта  (в выходящем датасете необходимы колонки: iso_code, страна, процент переболевших)
 
 * 2.Top 10 стран с максимальным зафиксированным кол-вом новых случаев за последнюю неделю марта 2021 в отсортированном порядке по убыванию
 (в выходящем датасете необходимы колонки: число, страна, кол-во новых случаев)
@@ -21,10 +21,10 @@
 
 `covid_df = spark.read.csv(r"C:\Users\user\Desktop\4.2\covid-data.csv", header=True, inferSchema=True)`
 
-*  15 стран с наибольшим процентом переболевших на 31 марта 2020 года
+*  15 стран с наибольшим процентом переболевших на 31 марта 2021 года
 Так как в отчетах указаны данные не только отдельных стран, но и целых объединений в рамках континентов, частей света и т.д. (iso_code начинается с "OWID_"), необходимо исключить их из анализа
 
-`covid_df.select("iso_code", "location", "date", "total_cases", "population").where("date = '2020-03-31'").where("iso_code NOT LIKE 'OWID_%'").withColumn("percent_infected", round(col("total_cases") / col("population") * 100, 3)).select("iso_code", "location", "percent_infected").orderBy(desc("percent_infected")).show(15)`
+`covid_df.select("iso_code", "location", "date", "total_cases", "population").where("date = '2021-03-31'").where("iso_code NOT LIKE 'OWID_%'").withColumn("percent_infected", round(col("total_cases") / col("population") * 100, 3)).select("iso_code", "location", "percent_infected").orderBy(desc("percent_infected")).show(15)`
 
 ![Скриншот](1.png)
 
